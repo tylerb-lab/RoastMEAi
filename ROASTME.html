@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Roast Me AI 🔥</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #111;
+      color: #eee;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .ad {
+      flex: 1;
+      background: #222;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .main {
+      flex: 2;
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: 20px;
+      border: 5px solid #ff1744;
+      border-radius: 10px;
+    }
+
+    .result {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: #f50057;
+    }
+
+    input[type="file"] {
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .layout {
+        flex-direction: column;
+      }
+
+      .ad {
+        flex: none;
+        padding: 0.5rem;
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <div class="ad" id="left-ad">
+      <!-- You can put an ad image or script here -->
+      <div>🔥 Ad Zone Left 🔥</div>
+    </div>
+
+    <div class="main">
+      <h1>🔥 Roast Me AI</h1>
+      <p>Upload a photo. Get roasted. We’re sorry in advance.</p>
+      
+      <input type="file" id="imageUpload" accept="image/*" />
+      <div id="preview"></div>
+      <div class="result" id="result"></div>
+    </div>
+
+    <div class="ad" id="right-ad">
+      <!-- You can put another ad image or script here -->
+      <div>🔥 Ad Zone Right 🔥</div>
+    </div>
+  </div>
+
+  <script>
+    const roasts = [
+      "You're not ugly. You're just... creatively arranged.",
+      "You look like you sleep under your bed to hide from yourself.",
+      "Your face could scare WiFi away.",
+      "You have something on your chin... no, the third one.",
+      "Even your reflection avoids eye contact.",
+      "You look like a before photo with no after.",
+      "If 'why tho' were a face, it'd be yours.",
+      "You were hit with the ugly stick… and the ugly log… and maybe the ugly truck.",
+      "You look like you lost a fight with gravity. And a lawnmower.",
+      "You must’ve been a beautiful baby... because something went terribly wrong later.",
+      "You have the face of radio. That’s turned off.",
+      "Did your parents name you 'Oops'?",
+      "Even AI struggles to identify what species you are.",
+      "Your photo crashed my browser.",
+      "You're what happens when Photoshop crashes mid-process.",
+      "Your eyebrows are having a custody battle.",
+      "You don’t have a bad side — they all teamed up.",
+      "You look like a discount NPC.",
+      "Face: 404 not found.",
+      "Your glow-up got lost in the mail."
+    ];
+
+    document.getElementById("imageUpload").addEventListener("change", function (e) {
+      const file = e.target.files[0];
+      const preview = document.getElementById("preview");
+      const result = document.getElementById("result");
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+          preview.innerHTML = `<img src="${event.target.result}" alt="Uploaded image">`;
+
+          const ugliness = Math.floor(Math.random() * 101); // 0–100
+          const roast = roasts[Math.floor(Math.random() * roasts.length)];
+
+          result.innerHTML = `
+            <h2>Ugliness: ${ugliness}%</h2>
+            <p>${roast}</p>
+          `;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
